@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Document</title>
+</head>
+<body class="bg-dark" >
+    <h1 class="text-white">This is  ToDoList</h1>
+    <div class="contianer  " >
+        <div class="container justify-content-md-center col-sm-3 mt-md-5">
+            <div class=alert-success>
+                {{msg}}
+            </div>
+            
+            <form action="{% url 'submit'  %}" method="POST">
+                {% csrf_token %}
+                 
+                <div class="form-group ">
+                <input type="text" class="form-control" id="exampleInputText" name="Note" placeholder=" Add Note here...">
+                  <input type="submit" class="btn btn-primary" value="Save" name="save" ></a>
+        
+                </div>
+                
+                
+              
+                
+            </form>
+            {% for i in note %}
+            <div class="contianer  ">
+            <div class="card " >
+                <div class="card-item" style="height: 20%;">
+                    <center>
+                
+            <p >{{i}}</p >
+                </center>
+            <small>{{i.time}}</small>
+            <small><a href="{% url 'delete' n=i %}">delete</a></small>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+     
+
+
+
+
+
+    </div>
+
+</body>
+</html>
